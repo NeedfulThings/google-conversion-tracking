@@ -22,7 +22,7 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-google-conversion-tracking"
-    version="0.0.1">
+    version="0.0.2">
   <name>GoogleConversionTracking</name>
   <description>Cordova Google Mobile Apps Conversion Tracking and Remarketing Plugin</description>
   <license>Apache 2.0</license>
@@ -30,20 +30,38 @@
   <repo>https://github.com/thosoft/google-conversion-tracking.git</repo>
   <issue>https://github.com/thosoft/google-conversion-tracking/issues</issue>
 
+  <js-module src="www/GoogleConvertTrack.js" name="GoogleAppTracking">
+    <clobbers target="GoogleAppTracking" />
+  </js-module>
+  
   <!-- android -->
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="GoogleConversionTracking" >
-        <param name="android-package" value="com.get4x.googleconversiontracking.GoogleConversionTracking"/>
+      <feature name="GoogleConvertTrack" >
+        <param name="android-package" value="com.get4x.plugins.googleconverttrack.GoogleConvertTrack"/>
       </feature>
     </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml">
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />      
+    </config-file>    
+    <config-file target="AndroidManifest.xml" parent="/*/application">
+      <receiver android:name="com.google.ads.conversiontracking.InstallReceiver"
+          android:exported="true">
+        <intent-filter>
+          <action android:name="com.android.vending.INSTALL_REFERRER" />
+        </intent-filter>
+      </receiver>
+    </config-file>    
+    <source-file src="src/android/GoogleConvertTrack.java" target-dir="src/com/get4x/plugins/googleconverttrack" />
+    <source-file src="src/android/GoogleConversionTrackingSdk-2.2.4.jar" target-dir="libs" />
   </platform>
 
   <!-- ios -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
-      <feature name="GoogleConversionTracking">
-        <param name="ios-package" value="CDVGoogleConversionTracking"/>
+      <feature name="GoogleConvertTrack">
+        <param name="ios-package" value="GoogleConvertTrack"/>
       </feature>
     </config-file>
   </platform>
