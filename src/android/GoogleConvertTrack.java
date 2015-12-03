@@ -62,15 +62,13 @@ public class GoogleConvertTrack extends CordovaPlugin
     {
         try 
         {
-            Intent intent = this.cordova.getActivity().getIntent();
+            String url = this.cordova.getActivity().getIntent().getDataString();
 			Boolean result = false;
-			String url = "";
-			if(intent != null)
+			if(url != null)
 			{
 				result = AdWordsConversionReporter.registerReferrer(
 					this.cordova.getActivity().getApplicationContext(), 
-					intent.getData());
-				url = intent.getDataString();
+					this.cordova.getActivity().getIntent().getData());
 			}
             callbackContext.success("regReferrer: " + result + " - intent: " + url);
         }
