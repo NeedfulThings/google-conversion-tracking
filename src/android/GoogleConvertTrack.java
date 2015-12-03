@@ -15,20 +15,26 @@ public class GoogleConvertTrack extends CordovaPlugin
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
     {
-        String conversion_id = args.getString(0);
-        String tracking_label = args.getString(1);
-        String tracking_value = args.getString(2);
-        Boolean repeatable = args.getBoolean(3);
-        
-        if (action.equals("reportWithConversionId"))
+        try 
         {
-            this.reportWithConversionId(conversion_id, tracking_label, tracking_value, repeatable, callbackContext);
-            return true;
-        } 
-        else if (action.equals("registerReferrer"))
+			if (action.equals("reportWithConversionId"))
+			{
+				String conversion_id = args.getString(0);
+				String tracking_label = args.getString(1);
+				String tracking_value = args.getString(2);
+				Boolean repeatable = args.getBoolean(3);
+				this.reportWithConversionId(conversion_id, tracking_label, tracking_value, repeatable, callbackContext);
+				return true;
+			} 
+			else if (action.equals("registerReferrer"))
+			{
+				this.registerReferrer(callbackContext);
+				return true;
+			}
+        }
+        catch(Exception e) 
         {
-            this.registerReferrer(callbackContext);
-            return true;
+            callbackContext.error("Error At execute: " + e.getMessage());
         }
         return false;
     }
@@ -48,24 +54,29 @@ public class GoogleConvertTrack extends CordovaPlugin
         }
         catch(final Exception e) 
         {
-            callbackContext.error("Error At GoogleConvertTrack.reportWithConversionId: " + e.getMessage());
+            callbackContext.error(e.getMessage());
         }
     }
     
-    private void registerReferrer(String conversion_id, String tracking_label, String tracking_value, Boolean repeatable, CallbackContext callbackContext)
+    private void registerReferrer(CallbackContext callbackContext)
     {
         try 
         {
-            // static void
-            String data = getIntent().getDataString();
-            Boolean result = AdWordsConversionReporter.registerReferrer(
-                this.cordova.getActivity().getApplicationContext(), 
-                this.getIntent().getData());
-            callbackContext.success("success registerReferrer: " + data + " ; result=" + result);
+            Intent intent = this.cordova.getActivity().getIntent();
+			Boolean result = false;
+			String url = "";
+			if(intent != null)
+			{
+				result = AdWordsConversionReporter.registerReferrer(
+					this.cordova.getActivity().getApplicationContext(), 
+					intent.getData());
+				url = intent.getDataString();
+			}
+            callbackContext.success("regReferrer: " + result + " - intent: " + url);
         }
         catch(final Exception e) 
         {
-            callbackContext.error("Error At GoogleConvertTrack.registerReferrer: " + e.getMessage());
+            callbackContext.error(e.getMessage());
         }
     }
 }

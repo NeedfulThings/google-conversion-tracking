@@ -30,8 +30,8 @@
   <repo>https://github.com/thosoft/google-conversion-tracking.git</repo>
   <issue>https://github.com/thosoft/google-conversion-tracking/issues</issue>
 
-  <js-module src="www/GoogleConvertTrack.js" name="GoogleAppTracking">
-    <clobbers target="GoogleAppTracking" />
+  <js-module src="www/GoogleConvertTrack.js" name="GoogleConvertTrack">
+    <clobbers target="GoogleConvertTrack" />
   </js-module>
   
   <!-- android -->
