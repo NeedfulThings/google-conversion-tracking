@@ -22,7 +22,7 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-google-conversion-tracking"
-    version="0.0.3">
+    version="0.0.4">
   <name>GoogleConversionTracking</name>
   <description>Cordova Google Mobile Apps Conversion Tracking and Remarketing Plugin</description>
   <license>Apache 2.0</license>
@@ -64,6 +64,12 @@
         <param name="ios-package" value="GoogleConvertTrack"/>
       </feature>
     </config-file>
+
+    <header-file src="src/ios/ACTReporter.h" />
+    <header-file src="src/ios/GoogleConvertTrack.h" />
+    <source-file src="src/ios/GoogleConvertTrack.m" />
+    <source-file src="src/ios/libGoogleConversionTracking.a" framework="true"/>
+    <framework src="AdSupport.framework" />
   </platform>
 
 </plugin>
