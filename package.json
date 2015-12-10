@@ -1,0 +1,34 @@
+{
+  "name": "cordova-plugin-google-conversion-tracking",
+  "version": "0.0.5",
+  "description": "Cordova Google Mobile Apps Conversion Tracking and Remarketing Plugin",
+  "cordova": {
+    "id": "cordova-plugin-google-conversion-tracking",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thosoft/google-conversion-tracking.git"
+  },
+  "keywords": [
+    "cordova",
+    "cordova-android",
+    "google",
+    "adwords",
+    "conversion",
+    "installation",
+    "referrer",
+    "referreral",
+    "campaign",
+    "tracking"
+  ],
+  "author": "Tho Ho",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/thosoft/google-conversion-tracking/issues"
+  },
+  "homepage": "https://github.com/thosoft/google-conversion-tracking"
+}
