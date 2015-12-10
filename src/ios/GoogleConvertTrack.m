@@ -14,7 +14,7 @@
     [self.commandDelegate runInBackground:^{
       [ACTConversionReporter reportWithConversionID:conversion_id label:tracking_label value:tracking_value isRepeatable:repeatable];
 
-      CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+      CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:tracking_label];
       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
 }
