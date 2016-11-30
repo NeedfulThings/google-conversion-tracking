@@ -20,5 +20,8 @@
 -->
 # Release Notes
 
+### 0.1.1 (Nov 30, 2016)
+* Updated Google Conversion Tracking SDK for iOS to version 3.4.0
+
 ### 0.1.0 (Dec 2, 2015)
 * First release

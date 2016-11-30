@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-google-conversion-tracking",
-  "version": "0.0.5",
+  "version": "0.1.1",
   "description": "Cordova Google Mobile Apps Conversion Tracking and Remarketing Plugin",
   "cordova": {
     "id": "cordova-plugin-google-conversion-tracking",
